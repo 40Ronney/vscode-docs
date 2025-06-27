@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lake Oil Group - Login</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #003366;
+            --accent-color: #ffcc00;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: linear-gradient(135deg, rgba(0, 84, 166, 0.1) 0%, rgba(0, 51, 102, 0.1) 100%);
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 380px;
+            max-width: 95%;
+            transition: all 0.3s ease;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            max-width: 180px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--dark-gray);
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+            color: var(--dark-gray);
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: border 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group input {
+            margin-right: 8px;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            width: 100%;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 15px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .error {
+            color: #dc3545;
+            font-size: 12px;
+            display: none;
+            margin-top: 5px;
+        }
+
+        .link {
+            text-align: center;
+            display: block;
+            margin-top: 15px;
+            font-size: 13px;
+            color: var(--dark-gray);
+        }
+
+        .toggle-button {
+            background-color: transparent;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: underline;
+            padding: 0;
+        }
+
+        .toggle-button:hover {
+            color: var(--secondary-color);
+        }
+
+        #welcomeMessage {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #resetPasswordForm {
+            display: none;
+        }
+
+        #registerForm {
+            display: none;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: #6c757d;
+            font-size: 13px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .divider::before {
+            margin-right: 10px;
+        }
+
+        .divider::after {
+            margin-left: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="logo-container">
+            <img src="https://www.lakeoilgroup.com/assets/images/logos/company/LAKE_GROUP_LOGO.jpg" alt="Lake Oil Group Logo" class="logo">
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" onsubmit="return validateLogin()">
+            <h2>Welcome to Lake Oil Group</h2>
+            <p class="subtitle">Please enter your credentials to access your account</p>
+
+            <div class="form-group">
+                <label for="loginUsername">Email Address</label>
+                <input type="email" id="loginUsername" name="loginUsername" placeholder="Enter your email address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter your password" required>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="rememberMe" name="rememberMe">
+                <label for="rememberMe">Remember me</label>
+                <div style="flex-grow: 1; text-align: right;">
+                    <a href="javascript:void(0);" onclick="toggleForm('resetPassword')" style="font-size: 13px; color: var(--primary-color);">Forgot password?</a>
+                </div>
+            </div>
+
+            <button type="submit" class="btn">Sign In</button>
+
+            <div class="divider">OR</div>
+
+            <div class="link">
+                Don't have an account? <button type="button" class="toggle-button" onclick="toggleForm('register')">Create account</button>
+            </div>
+        </form>
+
+        <!-- Registration Form -->
+        <form id="registerForm" onsubmit="return validateRegistration()" style="display: none;">
+            <h2>Create Account</h2>
+            <p class="subtitle">Join Lake Oil Group by filling the form below</p>
+
+            <div class="form-group">
+                <label for="registerFirstName">First Name</label>
+                <input type="text" id="registerFirstName" name="registerFirstName" placeholder="Enter your first name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="registerMiddleName">Middle Name (Optional)</label>
+                <input type="text" id="registerMiddleName" name="registerMiddleName" placeholder="Enter your middle name">
+            </div>
+
+            <div class="form-group">
+                <label for="registerLastName">Last Name</label>
+                <input type="text" id="registerLastName" name="registerLastName" placeholder="Enter your last name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="registerEmail">Email</label>
+                <input type="email" id="registerEmail" name="registerEmail" placeholder="Enter your email address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="registerPassword">Password</label>
+                <input type="password" id="registerPassword" name="registerPassword" placeholder="Create a password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+            </div>
+
+            <button type="submit" class="btn">Sign Up</button>
+
+            <div class="link">
+                Already have an account? <button type="button" class="toggle-button" onclick="toggleForm('login')">Sign in</button>
+            </div>
+        </form>
+
+        <!-- Reset Password Form -->
+        <form id="resetPasswordForm" onsubmit="return validateResetPassword()" style="display: none;">
+            <h2>Reset Password</h2>
+            <p class="subtitle">Enter your email to receive a password reset link</p>
+
+            <div class="form-group">
+                <label for="resetEmail">Email Address</label>
+                <input type="email" id="resetEmail" name="resetEmail" placeholder="Enter your email address" required>
+                <div id="emailError" class="error">Please enter a valid email address</div>
+            </div>
+
+            <button type="submit" class="btn">Send Reset Link</button>
+
+            <div class="link">
+                <button type="button" class="toggle-button" onclick="toggleForm('login')">Back to Sign In</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Welcome Message -->
+    <div id="welcomeMessage" style="display: none;">
+        <div class="container">
+            <div class="logo-container">
+                <img src="https://www.lakeoilgroup.com/assets/images/logos/company/LAKE_GROUP_LOGO.jpg" alt="Lake Oil Group Logo" class="logo">
+            </div>
+            <h2>Welcome to Lake Oil Group</h2>
+            <p class="subtitle">You have successfully logged in to your account</p>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn" onclick="toggleForm('login')">Back to Login</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleForm(formType) {
+            if (formType === 'login') {
+                document.getElementById('loginForm').style.display = 'block';
+                document.getElementById('registerForm').style.display = 'none';
+                document.getElementById('welcomeMessage').style.display = 'none';
+                document.getElementById('resetPasswordForm').style.display = 'none';
+            } else if (formType === 'register') {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('registerForm').style.display = 'block';
+                document.getElementById('welcomeMessage').style.display = 'none';
+                document.getElementById('resetPasswordForm').style.display = 'none';
+            } else if (formType === 'resetPassword') {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('registerForm').style.display = 'none';
+                document.getElementById('welcomeMessage').style.display = 'none';
+                document.getElementById('resetPasswordForm').style.display = 'block';
+            }
+        }
+
+        function validateLogin() {
+            let username = document.getElementById('loginUsername').value;
+            let password = document.getElementById('loginPassword').value;
+
+            let storedEmail = localStorage.getItem('email');
+            let storedPassword = localStorage.getItem('password');
+
+            if (username === storedEmail && password === storedPassword) {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('welcomeMessage').style.display = 'block';
+                return false; // Prevent form submission
+            } else {
+                alert('Invalid credentials. Please check your email and password.');
+                return false; // Prevent form submission
+            }
+        }
+
+        function validateRegistration() {
+            let password = document.getElementById('registerPassword').value;
+            let confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                return false; // Prevent form submission
+            }
+
+            let firstName = document.getElementById('registerFirstName').value;
+            let lastName = document.getElementById('registerLastName').value;
+            let email = document.getElementById('registerEmail').value;
+
+            // Storing registration data (for demo purposes, no backend)
+            localStorage.setItem('firstName', firstName);
+            localStorage.setItem('lastName', lastName);
+            localStorage.setItem('email', email);
+            localStorage.setItem('password', password);
+
+            alert("Registration successful! You can now login with your credentials.");
+            toggleForm('login'); // Redirect to login form
+            return false; // Prevent form submission
+        }
+
+        function validateResetPassword() {
+            let email = document.getElementById('resetEmail').value;
+            let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+            if (!emailPattern.test(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                return false;
+            } else {
+                document.getElementById('emailError').style.display = 'none';
+                // Simulate sending a reset code via email
+                alert("A password reset link has been sent to your email address.");
+                toggleForm('login'); // Redirect to login form
+                return false;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

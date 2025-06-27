@@ -213,14 +213,4 @@ Learn more about [using MCP servers and tools](/docs/copilot/chat/mcp-servers.md
 
 Get more [tips and tricks for using AI in VS Code](/docs/copilot/copilot-tips-and-tricks.md).
 
-## Pricing
-
-You can start using GitHub Copilot for free with monthly limits on completions and chat interactions. For more extensive usage, you can choose from various paid plans.
-
-[View detailed pricing →](https://docs.github.com/en/copilot/about-github-copilot/plans-for-github-copilot)
-
-## Next steps
-
-- [Set up Copilot in VS Code](/docs/copilot/setup.md)
-- [Get started with hands-on examples](/docs/copilot/getting-started.md)
-- [Customize the AI for your workflow](/docs/copilot/copilot-customization.md)
+##
